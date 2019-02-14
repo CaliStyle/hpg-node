@@ -1,99 +1,101 @@
-export const UserReseller = {
-  addUser: function(data) {
-    const {reseller_id, ...req } = data
+import { Base } from './Base'
+
+export class UserReseller extends Base {
+  addUser(data) {
+    const {resellerId, ...req } = data
 
     const url = {
-      'POST': `/resellers/${reseller_id}/users`
+      'POST': `/resellers/${resellerId}/users`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editUser: function(data) {
-    const {reseller_id, user_id, ...req } = data
+  editUser(data) {
+    const {resellerId, userId, ...req } = data
     const url = {
-      'PUT': `/resellers/${reseller_id}/users/${user_id}`
+      'PUT': `/resellers/${resellerId}/users/${userId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allUsers: function (data) {
-    const { reseller_id, page_size, start_row, sort_field, asc, ...req } = data
+  allUsers(data) {
+    const { resellerId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/resellers/${reseller_id}/users?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/resellers/${resellerId}/users?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  userById: function (data) {
-    const { reseller_id, user_id, ...req } = data
-    const url = {'GET': `/resellers/${reseller_id}/users/${user_id}`}
+  userById(data) {
+    const { resellerId, userId, ...req } = data
+    const url = {'GET': `/resellers/${resellerId}/users/${userId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteUser: function(data) {
-    const {reseller_id, user_id, ...req } = data
+  deleteUser(data) {
+    const {resellerId, userId, ...req } = data
     const url = {
-      'DEL': `/resellers/${reseller_id}/users/${user_id}`
+      'DEL': `/resellers/${resellerId}/users/${userId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  changePassword: function(data) {
-    const {reseller_id, loginname, ...req } = data
+  changePassword(data) {
+    const {resellerId, loginname, ...req } = data
     const url = {
-      'POST': `/resellers/${reseller_id}/users/${loginname}/passwords`
+      'POST': `/resellers/${resellerId}/users/${loginname}/passwords`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  resetPassword: function(data) {
-    const {reseller_id, loginname, ...req } = data
+  resetPassword(data) {
+    const {resellerId, loginname, ...req } = data
     const url = {
-      'POST': `/resellers/${reseller_id}/users/${loginname}/passwords`
+      'POST': `/resellers/${resellerId}/users/${loginname}/passwords`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  inactivateUser: function(data) {
-    const {reseller_id, user_id, ...req } = data
+  inactivateUser(data) {
+    const {resellerId, userId, ...req } = data
     const url = {
-      'DEL': `/resellers/${reseller_id}/users/${user_id}/activations`
+      'DEL': `/resellers/${resellerId}/users/${userId}/activations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  activateUser: function(data) {
-    const {reseller_id, user_id, ...req } = data
+  activateUser(data) {
+    const {resellerId, userId, ...req } = data
     const url = {
-      'POST': `/resellers/${reseller_id}/users/${user_id}/activations`
+      'POST': `/resellers/${resellerId}/users/${userId}/activations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getUserByLoginName: function(data) {
-    const {reseller_id, loginname, ...req } = data
+  getUserByLoginName(data) {
+    const {resellerId, loginname, ...req } = data
     const url = {
-      'GET': `/resellers/${reseller_id}/users/${loginname}`
+      'GET': `/resellers/${resellerId}/users/${loginname}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  unlockUser: function(data) {
-    const {reseller_id, user_id, ...req } = data
+  unlockUser(data) {
+    const {resellerId, userId, ...req } = data
     const url = {
-      'DEL': `/resellers/${reseller_id}/users/${user_id}/locks`
+      'DEL': `/resellers/${resellerId}/users/${userId}/locks`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

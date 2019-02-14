@@ -1,45 +1,47 @@
-export const Reseller = {
-  addReseller: function(data) {
+import { Base } from './Base'
+
+export class Reseller extends Base {
+  addReseller(data) {
     const {...req } = data
 
     const url = {
       'POST': `/resellers`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editReseller: function(data) {
-    const {reseller_id, ...req } = data
+  editReseller(data) {
+    const {resellerId, ...req } = data
     const url = {
-      'PUT': `/resellers/${reseller_id}`
+      'PUT': `/resellers/${resellerId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allResellers: function (data) {
-    const { page_size, start_row, sort_field, asc, ...req } = data
+  allResellers(data) {
+    const { pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/resellers?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/resellers?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  resellerById: function (data) {
-    const { reseller_id, ...req } = data
-    const url = {'GET': `/resellers/${reseller_id}`}
+  resellerById(data) {
+    const { resellerId, ...req } = data
+    const url = {'GET': `/resellers/${resellerId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteReseller: function(data) {
-    const {reseller_id, ...req } = data
+  deleteReseller(data) {
+    const {resellerId, ...req } = data
     const url = {
-      'DEL': `/resellers/${reseller_id}`
+      'DEL': `/resellers/${resellerId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

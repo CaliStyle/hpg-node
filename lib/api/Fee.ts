@@ -1,52 +1,54 @@
-export const Fee = {
-  addFee: function(data) {
+import { Base } from './Base'
+
+export class Fee extends Base {
+  addFee(data) {
     const {...req } = data
 
     const url = {
       'POST': `/fees`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editFee: function(data) {
-    const {fee_id, ...req } = data
+  editFee(data) {
+    const {feeId, ...req } = data
     const url = {
-      'PUT': `/fees/${fee_id}`
+      'PUT': `/fees/${feeId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allFees: function (data) {
-    const { page_size, start_row, sort_field, asc, ...req } = data
+  allFees(data) {
+    const { pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/fees?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/fees?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  feeById: function (data) {
-    const { fee_id, ...req } = data
-    const url = {'GET': `/fees/${fee_id}`}
+  feeById(data) {
+    const { feeId, ...req } = data
+    const url = {'GET': `/fees/${feeId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteFee: function(data) {
-    const {fee_id, ...req } = data
+  deleteFee(data) {
+    const {feeId, ...req } = data
     const url = {
-      'DEL': `/fees/${fee_id}`
+      'DEL': `/fees/${feeId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  feeByChannelType: function (data) {
+  feeByChannelType(data) {
     const { channel_type, ...req } = data
     const url = {'GET': `/channels/fees/${channel_type}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

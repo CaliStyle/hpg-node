@@ -1,14 +1,14 @@
 const assert = require('assert')
-const HPG = require('../../dist').HPG
+const RPG = require('../../dist').RPG
 
 describe('#RecurringPayment', () => {
-  let hpg
+  let rpg
 
   beforeEach(() => {
-    hpg = new HPG({})
+    rpg = new RPG({})
   })
 
   it('should exist', () => {
-    assert.ok(hpg.recurringPayment)
+    assert.ok(rpg.recurringPayment)
   })
 })

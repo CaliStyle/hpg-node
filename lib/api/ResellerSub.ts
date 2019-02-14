@@ -1,36 +1,38 @@
-export const ResellerSub = {
-  addSubreseller: function(data) {
-    const {reseller_id, ...req } = data
+import { Base } from './Base'
+
+export class ResellerSub extends Base {
+  addSubreseller(data) {
+    const {resellerId, ...req } = data
 
     const url = {
-      'POST': `/resellers/${reseller_id}/subresellers`
+      'POST': `/resellers/${resellerId}/subresellers`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editSubreseller: function(data) {
-    const {reseller_id, subreseller_id, ...req } = data
+  editSubreseller(data) {
+    const {resellerId, subresellerId, ...req } = data
     const url = {
-      'PUT': `/resellers/${reseller_id}/subresellers/${subreseller_id}`
+      'PUT': `/resellers/${resellerId}/subresellers/${subresellerId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allSubresellers: function (data) {
-    const { reseller_id, page_size, start_row, sort_field, asc, ...req } = data
+  allSubresellers(data) {
+    const { resellerId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/resellers/${reseller_id}/subresellers?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/resellers/${resellerId}/subresellers?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  subresellerById: function (data) {
-    const { reseller_id, subreseller_id, ...req } = data
-    const url = {'GET': `/resellers/${reseller_id}/subresellers/${subreseller_id}`}
+  subresellerById(data) {
+    const { resellerId, subresellerId, ...req } = data
+    const url = {'GET': `/resellers/${resellerId}/subresellers/${subresellerId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

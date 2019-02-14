@@ -1,3 +1,5 @@
-export const Fraud = {
+import { Base } from './Base'
+
+export class Fraud extends Base {
 
 }

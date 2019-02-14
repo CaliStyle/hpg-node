@@ -27,11 +27,11 @@ const rpg = new RPG({
 })
 ```
 
-[npm-image]: https://img.shields.io/npm/v/@calistyle/hpg-node.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@calistyle/hpg-node
-[ci-image]: https://img.shields.io/circleci/project/github/CaliStyle/hpg-node/master.svg
-[ci-url]: https://circleci.com/gh/CaliStyle/hpg-node/tree/master
-[daviddm-image]: http://img.shields.io/david/CaliStyle/hpg-node.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/CaliStyle/hpg-node
-[coverage-image]: https://img.shields.io/codeclimate/coverage/github/CaliStyle/hpg-node.svg?style=flat-square
-[coverage-url]: https://codeclimate.com/github/CaliStyle/hpg-node/coverage
+[npm-image]: https://img.shields.io/npm/v/@calistyle/rise-pg-node.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@calistyle/rise-pg-node
+[ci-image]: https://img.shields.io/circleci/project/github/CaliStyle/rise-pg-node/master.svg
+[ci-url]: https://circleci.com/gh/CaliStyle/rise-pg-node/tree/master
+[daviddm-image]: http://img.shields.io/david/CaliStyle/rise-pg-node.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/CaliStyle/rise-pg-node
+[coverage-image]: https://img.shields.io/codeclimate/coverage/github/CaliStyle/rise-pg-node.svg?style=flat-square
+[coverage-url]: https://codeclimate.com/github/CaliStyle/rise-pg-node/coverage

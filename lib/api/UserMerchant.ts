@@ -1,99 +1,101 @@
-export const UserMerchant = {
-  addUser: function(data) {
-    const {merchant_id, ...req } = data
+import { Base } from './Base'
+
+export class UserMerchant extends Base {
+  addUser(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/users`
+      'POST': `/merchants/${merchantId}/users`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editUser: function(data) {
-    const {merchant_id, user_id, ...req } = data
+  editUser(data) {
+    const {merchantId, userId, ...req } = data
     const url = {
-      'PUT': `/merchants/${merchant_id}/users/${user_id}`
+      'PUT': `/merchants/${merchantId}/users/${userId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allUsers: function (data) {
-    const { merchant_id, page_size, start_row, sort_field, asc, ...req } = data
+  allUsers(data) {
+    const { merchantId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/merchants/${merchant_id}/users?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/merchants/${merchantId}/users?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  userById: function (data) {
-    const { merchant_id, user_id, ...req } = data
-    const url = {'GET': `/merchants/${merchant_id}/users/${user_id}`}
+  userById(data) {
+    const { merchantId, userId, ...req } = data
+    const url = {'GET': `/merchants/${merchantId}/users/${userId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteUser: function(data) {
-    const {merchant_id, user_id, ...req } = data
+  deleteUser(data) {
+    const {merchantId, userId, ...req } = data
     const url = {
-      'DEL': `/merchants/${merchant_id}/users/${user_id}`
+      'DEL': `/merchants/${merchantId}/users/${userId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  changePassword: function(data) {
-    const {merchant_id, loginname, ...req } = data
+  changePassword(data) {
+    const {merchantId, loginname, ...req } = data
     const url = {
-      'POST': `/merchants/${merchant_id}/users/${loginname}/passwords`
+      'POST': `/merchants/${merchantId}/users/${loginname}/passwords`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  resetPassword: function(data) {
-    const {merchant_id, loginname, ...req } = data
+  resetPassword(data) {
+    const {merchantId, loginname, ...req } = data
     const url = {
-      'POST': `/merchants/${merchant_id}/users/${loginname}/passwords`
+      'POST': `/merchants/${merchantId}/users/${loginname}/passwords`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  inactivateUser: function(data) {
-    const {merchant_id, user_id, ...req } = data
+  inactivateUser(data) {
+    const {merchantId, userId, ...req } = data
     const url = {
-      'DEL': `/merchants/${merchant_id}/users/${user_id}/activations`
+      'DEL': `/merchants/${merchantId}/users/${userId}/activations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  activateUser: function(data) {
-    const {merchant_id, user_id, ...req } = data
+  activateUser(data) {
+    const {merchantId, userId, ...req } = data
     const url = {
-      'POST': `/merchants/${merchant_id}/users/${user_id}/activations`
+      'POST': `/merchants/${merchantId}/users/${userId}/activations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getUserByLoginName: function(data) {
-    const {merchant_id, loginname, ...req } = data
+  getUserByLoginName(data) {
+    const {merchantId, loginname, ...req } = data
     const url = {
-      'GET': `/merchants/${merchant_id}/users/${loginname}`
+      'GET': `/merchants/${merchantId}/users/${loginname}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  unlockUser: function(data) {
-    const {merchant_id, user_id, ...req } = data
+  unlockUser(data) {
+    const {merchantId, userId, ...req } = data
     const url = {
-      'DEL': `/merchants/${merchant_id}/users/${user_id}/locks`
+      'DEL': `/merchants/${merchantId}/users/${userId}/locks`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

@@ -1,54 +1,56 @@
-export const RoleMerchant = {
-  addRole: function(data) {
-    const {merchant_id, ...req } = data
+import { Base } from './Base'
+
+export class RoleMerchant extends Base {
+  addRole(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/roles`
+      'POST': `/merchants/${merchantId}/roles`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editRole: function(data) {
-    const {merchant_id, role_id, ...req } = data
+  editRole(data) {
+    const {merchantId, roleId, ...req } = data
     const url = {
-      'PUT': `/merchants/${merchant_id}/roles/${role_id}`
+      'PUT': `/merchants/${merchantId}/roles/${roleId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allRoles: function (data) {
-    const { merchant_id, page_size, start_row, sort_field, asc, ...req } = data
+  allRoles(data) {
+    const { merchantId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/merchants/${merchant_id}/roles?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/merchants/${merchantId}/roles?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  roleById: function (data) {
-    const { merchant_id, role_id, ...req } = data
-    const url = {'GET': `/merchants/${merchant_id}/roles/${role_id}`}
+  roleById(data) {
+    const { merchantId, roleId, ...req } = data
+    const url = {'GET': `/merchants/${merchantId}/roles/${roleId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteRole: function(data) {
-    const {merchant_id, role_id, ...req } = data
+  deleteRole(data) {
+    const {merchantId, roleId, ...req } = data
     const url = {
-      'DEL': `/merchants/${merchant_id}/roles/${role_id}`
+      'DEL': `/merchants/${merchantId}/roles/${roleId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getOperation: function(data) {
+  getOperation(data) {
     const { user_type, ...req } = data
     const url = {
       'GET': `/operations?userType=${user_type || 1}`
     }
 
-    return this.request(url, req)
+    return this.rpg.request(url, req)
   }
 }

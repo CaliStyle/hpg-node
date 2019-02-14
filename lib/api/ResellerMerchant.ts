@@ -1,36 +1,38 @@
-export const ResellerMerchant = {
-  addMerchant: function(data) {
-    const {reseller_id, ...req } = data
+import { Base } from './Base'
+
+export class ResellerMerchant extends Base {
+  addMerchant(data) {
+    const {resellerId, ...req } = data
 
     const url = {
-      'POST': `/resellers/${reseller_id}/merchants`
+      'POST': `/resellers/${resellerId}/merchants`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editMerchant: function(data) {
-    const {reseller_id, merchant_id, ...req } = data
+  editMerchant(data) {
+    const {resellerId, merchantId, ...req } = data
     const url = {
-      'PUT': `/resellers/${reseller_id}/merchants/${merchant_id}`
+      'PUT': `/resellers/${resellerId}/merchants/${merchantId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allMerchants: function (data) {
-    const { reseller_id, page_size, start_row, sort_field, asc, ...req } = data
+  allMerchants(data) {
+    const { resellerId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/resellers/${reseller_id}/merchants?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/resellers/${resellerId}/merchants?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  merchantById: function (data) {
-    const { reseller_id, merchant_id, ...req } = data
-    const url = {'GET': `/resellers/${reseller_id}/merchants/${merchant_id}`}
+  merchantById(data) {
+    const { resellerId, merchantId, ...req } = data
+    const url = {'GET': `/resellers/${resellerId}/merchants/${merchantId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

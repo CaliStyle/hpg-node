@@ -1,83 +1,85 @@
-export const CustomerAccount = {
+import { Base } from './Base'
+
+export class CustomerAccount extends Base {
   /**
    * Add Customer Account
    * @param data
    */
-  addCustomerAccount: function (data) {
+  addCustomerAccount(data) {
     // TODO this may be a GET request
-    const { merchant_id, customer_id, customer_account_id, ...req } = data
-    const url = {'POST': `/merchants/${ merchant_id}/customers/${customer_id}/customeraccounts/${customer_account_id}/encrypted`}
+    const { merchantId, customerId, customerAccountId, ...req } = data
+    const url = {'POST': `/merchants/${ merchantId}/customers/${customerId}/customeraccounts/${customerAccountId}/encrypted`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Edit Customer Account
    * @param data
    */
-  editCustomerAccount: function (data) {
-    const { merchant_id, customer_id, customer_account_id, ...req } = data
-    const url = {'PUT': `/merchants/${ merchant_id}/customers/${customer_id}/customeraccounts/${customer_account_id}`}
+  editCustomerAccount(data) {
+    const { merchantId, customerId, customerAccountId, ...req } = data
+    const url = {'PUT': `/merchants/${ merchantId}/customers/${customerId}/customeraccounts/${customerAccountId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Get All Customer Accounts
    * @param data
    */
-  allCustomerAccounts: function (data) {
-    const { merchant_id, customer_id, ...req } = data
-    const url = {'GET': `/merchants/${ merchant_id}/customers/${customer_id}/customeraccounts`}
+  allCustomerAccounts(data) {
+    const { merchantId, customerId, ...req } = data
+    const url = {'GET': `/merchants/${ merchantId}/customers/${customerId}/customeraccounts`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Customer Account By Id Credit Card
    * @param data
    */
-  customerAccountByIdCC: function (data) {
-    const { merchant_id, customer_id, customer_account_id, ...req } = data
-    const url = {'GET': `/merchants/${ merchant_id}/customers/${customer_id}/customeraccounts/${customer_account_id}`}
+  customerAccountByIdCC(data) {
+    const { merchantId, customerId, customerAccountId, ...req } = data
+    const url = {'GET': `/merchants/${ merchantId}/customers/${customerId}/customeraccounts/${customerAccountId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Customer Account By Id ACH
    * @param data
    */
-  customerAccountByIdACH: function (data) {
-    const { merchant_id, customer_account_id, ...req } = data
-    const url = {'GET': `/merchants/${ merchant_id}/customeraccounts/${customer_account_id}`}
+  customerAccountByIdACH(data) {
+    const { merchantId, customerAccountId, ...req } = data
+    const url = {'GET': `/merchants/${ merchantId}/customeraccounts/${customerAccountId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Set Default Customer Account
    * @param data
    */
-  setDefaultCustomerAccount: function(data) {
-    const { merchant_id, customer_account_id, ...req } = data
-    const url = {'PUT': `/merchants/${ merchant_id}/customeraccounts/${customer_account_id}/default`}
+  setDefaultCustomerAccount(data) {
+    const { merchantId, customerAccountId, ...req } = data
+    const url = {'PUT': `/merchants/${ merchantId}/customeraccounts/${customerAccountId}/default`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Get Default Customer Account
    * @param data
    */
-  defaultCustomerAccount: function (data) {
-    const { merchant_id, customer_account_id, ...req } = data
-    const url = {'GET': `/merchants/${ merchant_id}/customeraccounts/${customer_account_id}/default`}
+  defaultCustomerAccount(data) {
+    const { merchantId, customerAccountId, ...req } = data
+    const url = {'GET': `/merchants/${ merchantId}/customeraccounts/${customerAccountId}/default`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
   /**
    * Get Customer Account Type
    * @param data
    */
-  customerAccountType: function (data) {
-    const { merchant_id, customer_account_id, ...req } = data
-    const url = {'GET': `/merchants/${ merchant_id}/customeraccounts/${customer_account_id}/encrypted`}
+  customerAccountType(data) {
+    const { merchantId, customerAccountId, ...req } = data
+    const url = {'GET': `/merchants/${ merchantId}/customeraccounts/${customerAccountId}/encrypted`}
 
-    return this.request(url, req)
+    return this.rpg.request(url, req)
   }
 }

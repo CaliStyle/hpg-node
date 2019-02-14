@@ -1,54 +1,56 @@
-export const RoleReseller = {
-  addRole: function(data) {
-    const {reseller_id, ...req } = data
+import { Base } from './Base'
+
+export class RoleReseller extends Base {
+  addRole(data) {
+    const {resellerId, ...req } = data
 
     const url = {
-      'POST': `/resellers/${reseller_id}/roles`
+      'POST': `/resellers/${resellerId}/roles`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editRole: function(data) {
-    const {reseller_id, role_id, ...req } = data
+  editRole(data) {
+    const {resellerId, roleId, ...req } = data
     const url = {
-      'PUT': `/resellers/${reseller_id}/roles/${role_id}`
+      'PUT': `/resellers/${resellerId}/roles/${roleId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allRoles: function (data) {
-    const { reseller_id, page_size, start_row, sort_field, asc, ...req } = data
+  allRoles(data) {
+    const { resellerId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/resellers/${reseller_id}/roles?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/resellers/${resellerId}/roles?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  roleById: function (data) {
-    const { reseller_id, role_id, ...req } = data
-    const url = {'GET': `/resellers/${reseller_id}/roles/${role_id}`}
+  roleById(data) {
+    const { resellerId, roleId, ...req } = data
+    const url = {'GET': `/resellers/${resellerId}/roles/${roleId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteRole: function(data) {
-    const {reseller_id, role_id, ...req } = data
+  deleteRole(data) {
+    const {resellerId, roleId, ...req } = data
     const url = {
-      'DEL': `/resellers/${reseller_id}/roles/${role_id}`
+      'DEL': `/resellers/${resellerId}/roles/${roleId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getOperation: function(data) {
+  getOperation(data) {
     const { user_type, ...req } = data
     const url = {
       'GET': `/operations?userType=${user_type || 0}`
     }
 
-    return this.request(url, req)
+    return this.rpg.request(url, req)
   }
 }

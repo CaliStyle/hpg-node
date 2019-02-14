@@ -1,54 +1,56 @@
-export const Merchant = {
-  addMerchant: function(data) {
+import { Base } from './Base'
+
+export class Merchant extends Base {
+  addMerchant(data) {
     const {...req } = data
 
     const url = {
       'POST': `/merchants`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editMerchant: function(data) {
-    const {merchant_id, ...req } = data
+  editMerchant(data) {
+    const {merchantId, ...req } = data
     const url = {
-      'PUT': `/merchants/${merchant_id}`
+      'PUT': `/merchants/${merchantId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allMerchants: function (data) {
-    const { page_size, start_row, sort_field, asc, ...req } = data
+  allMerchants(data) {
+    const { pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/merchants?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/merchants?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allMerchantsList: function (data) {
+  allMerchantsList(data) {
     const { ...req } = data
     const url = {
       'GET': `/merchants/list`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  merchantById: function (data) {
-    const { merchant_id, ...req } = data
-    const url = {'GET': `/merchants/${merchant_id}`}
+  merchantById(data) {
+    const { merchantId, ...req } = data
+    const url = {'GET': `/merchants/${merchantId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteMerchant: function(data) {
-    const {merchant_id, ...req } = data
+  deleteMerchant(data) {
+    const {merchantId, ...req } = data
     const url = {
-      'DEL': `/merchants/${merchant_id}`
+      'DEL': `/merchants/${merchantId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

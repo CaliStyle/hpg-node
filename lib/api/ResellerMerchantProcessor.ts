@@ -1,21 +1,23 @@
-export const ResellerMerchantProcessor = {
-  getProcecssor: function(data) {
-    const {reseller_id, merchant_id, processor_id, ...req } = data
+import { Base } from './Base'
+
+export class ResellerMerchantProcessor extends Base {
+  getProcecssor(data) {
+    const {resellerId, merchantId, processorId, ...req } = data
 
     const url = {
-      'GET': `/resellers/${reseller_id}/merchants/${merchant_id}/processorconfigurations/${processor_id}`
+      'GET': `/resellers/${resellerId}/merchants/${merchantId}/processorconfigurations/${processorId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  setProcessor: function(data) {
-    const {reseller_id, merchant_id, processor_id, ...req } = data
+  setProcessor(data) {
+    const {resellerId, merchantId, processorId, ...req } = data
 
     const url = {
-      'PUT': `/resellers/${reseller_id}/merchants/${merchant_id}/processorconfigurations/${processor_id}`
+      'PUT': `/resellers/${resellerId}/merchants/${merchantId}/processorconfigurations/${processorId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }

@@ -1,63 +1,65 @@
-export const Role = {
-  addRole: function(data) {
+import { Base } from './Base'
+
+export class Role extends Base {
+  addRole(data) {
     const {...req } = data
 
     const url = {
       'POST': `/roles`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  editRole: function(data) {
-    const {role_id, ...req } = data
+  editRole(data) {
+    const {roleId, ...req } = data
     const url = {
-      'PUT': `/roles/${role_id}`
+      'PUT': `/roles/${roleId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  allRoles: function (data) {
-    const { page_size, start_row, sort_field, asc, ...req } = data
+  allRoles(data) {
+    const { pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/roles?PageSize=${page_size}&StartRow=${start_row}&SortField=${sort_field}&Asc=${asc}`
+      'GET': `/roles?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  roleById: function (data) {
-    const { role_id, ...req } = data
-    const url = {'GET': `/roles/${role_id}`}
+  roleById(data) {
+    const { roleId, ...req } = data
+    const url = {'GET': `/roles/${roleId}`}
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  deleteRole: function(data) {
-    const {role_id, ...req } = data
+  deleteRole(data) {
+    const {roleId, ...req } = data
     const url = {
-      'DEL': `/roles/${role_id}`
+      'DEL': `/roles/${roleId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getOperation: function(data) {
+  getOperation(data) {
     const {user_type, ...req } = data
     const url = {
       'GET': `/operations?userType=${user_type || 2}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getAllOperations: function(data) {
+  getAllOperations(data) {
     const {...req } = data
     const url = {
       'GET': `/operations`
     }
 
-    return this.request(url, req)
+    return this.rpg.request(url, req)
   }
 }

@@ -1,156 +1,158 @@
-export const Transaction = {
-  addTransactionCC: function(data) {
-    const {merchant_id, ...req } = data
+import { Base } from './Base'
+
+export class Transaction extends Base {
+  addTransactionCC(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
-  addTransactionACH: function (data) {
-    const {merchant_id, ...req } = data
+    return this.rpg.request(url, req)
+  }
+  addTransactionACH(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
-  addTransactionDC: function (data) {
-    const {merchant_id, ...req } = data
+    return this.rpg.request(url, req)
+  }
+  addTransactionDC(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
-  addTransactionCustomerCC: function (data) {
-    const {merchant_id, ...req } = data
+    return this.rpg.request(url, req)
+  }
+  addTransactionCustomerCC(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
-  addTransactionCustomerACH: function (data) {
-    const {merchant_id, ...req } = data
+    return this.rpg.request(url, req)
+  }
+  addTransactionCustomerACH(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
-  addTip: function(data) {
-    const {merchant_id, transaction_id, tip_amount, ...req } = data
+    return this.rpg.request(url, req)
+  }
+  addTip(data) {
+    const {merchantId, transactionId, tip_amount, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions/${transaction_id}/adjustment?tipAmount=${tip_amount}`
+      'POST': `/merchants/${merchantId}/transactions/${transactionId}/adjustment?tipAmount=${tip_amount}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  getTransactionById: function(data) {
-    const {merchant_id, transaction_id, ...req } = data
+  getTransactionById(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'GET': `/merchants/${merchant_id}/transactions/${transaction_id}`
+      'GET': `/merchants/${merchantId}/transactions/${transactionId}`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  searchTransactions: function(data) {
-    const {merchant_id, ...req } = data
+  searchTransactions(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'GET': `/merchants/${merchant_id}/transactions`
+      'GET': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  verifyTransaction: function (data) {
-    const {merchant_id, ...req } = data
+  verifyTransaction(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  forceSaleTransaction: function (data) {
-    const {merchant_id, ...req } = data
+  forceSaleTransaction(data) {
+    const {merchantId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/transactions`
+      'POST': `/merchants/${merchantId}/transactions`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  voidTransactionCC: function (data) {
-    const {merchant_id, transaction_id, ...req } = data
+  voidTransactionCC(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/3/transactions/${transaction_id}/cancellations`
+      'POST': `/merchants/${merchantId}/3/transactions/${transactionId}/cancellations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  voidTransactionACH: function (data) {
-    const {merchant_id, transaction_id, ...req } = data
+  voidTransactionACH(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/2/transactions/${transaction_id}/cancellations`
+      'POST': `/merchants/${merchantId}/2/transactions/${transactionId}/cancellations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  voidTransactionDC: function (data) {
-    const {merchant_id, transaction_id, ...req } = data
+  voidTransactionDC(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/1/transactions/${transaction_id}/cancellations`
+      'POST': `/merchants/${merchantId}/1/transactions/${transactionId}/cancellations`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  refundTransactionCC: function (data) {
-    const {merchant_id, transaction_id, ...req } = data
+  refundTransactionCC(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/3/transactions/${transaction_id}/refunds`
+      'POST': `/merchants/${merchantId}/3/transactions/${transactionId}/refunds`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  refundTransactionACH: function (data) {
-    const {merchant_id, transaction_id, ...req } = data
+  refundTransactionACH(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/2/transactions/${transaction_id}/refunds`
+      'POST': `/merchants/${merchantId}/2/transactions/${transactionId}/refunds`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 
-  refundTransactionDC: function (data) {
-    const {merchant_id, transaction_id, ...req } = data
+  refundTransactionDC(data) {
+    const {merchantId, transactionId, ...req } = data
 
     const url = {
-      'POST': `/merchants/${merchant_id}/1/transactions/${transaction_id}/refunds`
+      'POST': `/merchants/${merchantId}/1/transactions/${transactionId}/refunds`
     }
 
-    return this.request(url, req)
-  },
+    return this.rpg.request(url, req)
+  }
 }
