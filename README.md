@@ -1,15 +1,15 @@
-# Hello Payments SDK
+# RiSE Payment Gateway SDK
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
 [![Test Coverage][coverage-image]][coverage-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
 
-Strongly typed Node SDK for Hello Payments Gateway
+Strongly typed Node SDK for RiSE Payment Gateway
 
 # Installation
 ```
-npm install @calistyle/hpg-node
+npm install @calistyle/rise-pg-node
 ```
 
 # Documentation
@@ -20,8 +20,8 @@ npm install @calistyle/hpg-node
 
 ## Setup
 ```js
-const HPG = require('@calistyle/hpg-node').HPG
-const hpg = new HPG({
+const RPG = require('@calistyle/rise-pg-node').RPG
+const rpg = new RPG({
   userName: 'your-username',
   password: 'your-password'
 })
