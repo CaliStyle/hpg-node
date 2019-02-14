@@ -1,10 +1,5 @@
-import { RPG } from '../index'
+import {Base} from './Base'
 
-export class Billing {
-  public rpg: RPG
-
-  constructor(rpg) {
-    this.rpg = rpg
-  }
+export class Billing extends Base {
 
 }

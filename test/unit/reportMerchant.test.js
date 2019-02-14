@@ -10,9 +10,8 @@ describe('#ReportMerchant', () => {
 
   it('should exist', () => {
     assert.ok(rpg.reportMerchant)
-    // assert.equal(typeof rpg.reportMerchant.addReportMerchant, 'function')
-    // assert.equal(typeof rpg.reportMerchant.editReportMerchant, 'function')
-    // assert.equal(typeof rpg.reportMerchant.allReportMerchants, 'function')
-    // assert.equal(typeof rpg.reportMerchant.reportMerchantById, 'function')
+    assert.equal(typeof rpg.reportMerchant.billingReport, 'function')
+    assert.equal(typeof rpg.reportMerchant.creationReport, 'function')
+    assert.equal(typeof rpg.reportMerchant.merchantTransactionReport, 'function')
   })
 })

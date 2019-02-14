@@ -10,9 +10,7 @@ describe('#MerchantProcessor', () => {
 
   it('should exist', () => {
     assert.ok(rpg.merchantProcessor)
-    // assert.equal(typeof rpg.merchantProcessor.addMerchantProcessor, 'function')
-    // assert.equal(typeof rpg.merchantProcessor.editMerchantProcessor, 'function')
-    // assert.equal(typeof rpg.merchantProcessor.allMerchantProcessors, 'function')
-    // assert.equal(typeof rpg.merchantProcessor.merchantProcessorById, 'function')
+    assert.equal(typeof rpg.merchantProcessor.getProcessor, 'function')
+    assert.equal(typeof rpg.merchantProcessor.setProcessor, 'function')
   })
 })

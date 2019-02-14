@@ -10,9 +10,9 @@ describe('#ResellerSub', () => {
 
   it('should exist', () => {
     assert.ok(rpg.resellerSub)
-    // assert.equal(typeof rpg.resellerSub.addResellerSub, 'function')
-    // assert.equal(typeof rpg.resellerSub.editResellerSub, 'function')
-    // assert.equal(typeof rpg.resellerSub.allResellerSubs, 'function')
-    // assert.equal(typeof rpg.resellerSub.resellerSubById, 'function')
+    assert.equal(typeof rpg.resellerSub.addSubreseller, 'function')
+    assert.equal(typeof rpg.resellerSub.editSubreseller, 'function')
+    assert.equal(typeof rpg.resellerSub.allSubresellers, 'function')
+    assert.equal(typeof rpg.resellerSub.subresellerById, 'function')
   })
 })

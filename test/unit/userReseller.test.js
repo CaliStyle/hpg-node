@@ -10,5 +10,9 @@ describe('#UserReseller', () => {
 
   it('should exist', () => {
     assert.ok(rpg.userReseller)
+    assert.equal(typeof rpg.userReseller.addUser, 'function')
+    assert.equal(typeof rpg.userReseller.editUser, 'function')
+    assert.equal(typeof rpg.userReseller.allUsers, 'function')
+    assert.equal(typeof rpg.userReseller.userById, 'function')
   })
 })

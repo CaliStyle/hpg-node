@@ -1,7 +1,7 @@
 import { Base } from './Base'
 
 export class ResellerMerchantProcessor extends Base {
-  getProcecssor(data) {
+  getProcessor(data) {
     const {resellerId, merchantId, processorId, ...req } = data
 
     const url = {

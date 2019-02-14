@@ -1,5 +1,4 @@
 import { validateCustomer } from '../validators'
-import { RPG } from '../index'
 import { Base } from './Base'
 
 export class Customer extends Base {
