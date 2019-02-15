@@ -9,7 +9,7 @@ Strongly typed Node SDK for RiSE Payment Gateway
 
 # Installation
 ```
-npm install @calistyle/rise-pg-node
+npm install @calistyle/rise-pg-node --save
 ```
 
 # Documentation
@@ -19,11 +19,46 @@ npm install @calistyle/rise-pg-node
 # Usage
 
 ## Setup
+Obtain an API key, username, and password, from the RiSE Payment Platform,
+and configure the RPG class.
+
 ```js
 const RPG = require('@calistyle/rise-pg-node').RPG
 const rpg = new RPG({
-  userName: 'your-username',
-  password: 'your-password'
+  apiKey: 'your-api-key',
+  username: 'your-username',
+  password: 'your-password',
+  debug: true,
+  sandbox: true
+})
+```
+
+## Using Promises
+Every method returns a chainable promise:
+
+```js
+// Create a new customer, customer account, and then a new transaction for that customer:
+rpg.customer.addCustomer({
+  merchantId: 1,
+  email: 'foo-customer@example.com'
+}).then((customer) => {
+  return rpg.customerAccount.addCustomerAccount({
+    merchantId: 1,
+    customerId: customer.id,
+    accountToken: 'tok_visa'
+  })
+}).then((account) => {
+  return rpg.transaction.addTransactionCC({
+    merchantId: 1,
+    referenceCustomerId: account.customerId,
+    customerAccountId: account.id,
+    amount: 1600,
+    currency: 'usd'
+  })
+}).then((transaction) => {
+  // New charge created on a new customer
+}).catch((err) => {
+  // Deal with an error
 })
 ```
 
