@@ -5,7 +5,13 @@ describe('#ResellerSub', () => {
   let rpg
 
   beforeEach(() => {
-    rpg = new RPG({})
+    rpg = new RPG({
+      apiKey: process.env.API_KEY,
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      transform: false,
+      debug: true
+    })
   })
 
   it('should exist', () => {

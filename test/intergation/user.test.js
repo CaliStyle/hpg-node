@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Invoice', () => {
+describe('#Intergration User', () => {
   let rpg
 
   beforeEach(() => {
@@ -12,9 +12,5 @@ describe('#Invoice', () => {
       transform: false,
       debug: true
     })
-  })
-
-  it('should exist', () => {
-    assert.ok(rpg.invoice)
   })
 })
