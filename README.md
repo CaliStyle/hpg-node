@@ -1,4 +1,4 @@
-# RiSE Payment Gateway SDK
+# RiSE Payment Gateway Node.js SDK
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][ci-image]][ci-url]
