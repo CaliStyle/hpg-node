@@ -31,7 +31,8 @@ import {
   Transaction,
   User,
   UserMerchant,
-  UserReseller
+  UserReseller,
+  Webhook
 } from './api'
 
 import { validateConfig } from './validators'
@@ -67,6 +68,7 @@ export class RPG {
   public user: User
   public userMerchant: UserMerchant
   public userReseller: UserReseller
+  public webhook: Webhook
 
   private _config: {
     apiKey?: string,
@@ -74,8 +76,13 @@ export class RPG {
     password?: string,
     transform?: boolean,
     debug?: boolean,
-    sandbox?: boolean
+    sandbox?: boolean,
+    validateWebhooks?: boolean
   } = {}
+
+  private _proxy: {}
+
+  private _retries: number = 0
 
   constructor(options: {
     apiKey?: string,
@@ -83,7 +90,8 @@ export class RPG {
     password?: string,
     transform?: boolean,
     debug?: boolean,
-    sandbox?: boolean} = {}
+    sandbox?: boolean,
+    validateWebhooks?: boolean} = {}
   ) {
 
     // Set config
@@ -119,55 +127,59 @@ export class RPG {
     this.user = new User(this)
     this.userMerchant = new UserMerchant(this)
     this.userReseller = new UserReseller(this)
+    this.webhook = new Webhook(this)
 
     // bind `this` context
-    const methods = [
-      'billing',
-      'country',
-      'customer',
-      'customerAccount',
-      'fee',
-      'fraud',
-      'invoice',
-      'merchant',
-      'merchantProcessor',
-      'notification',
-      'notificationMerchant',
-      'notificationReseller',
-      'paymentForm',
-      'ratePlan',
-      'recurringPayment',
-      'report',
-      'reportMerchant',
-      'reseller',
-      'resellerMerchant',
-      'resellerMerchantProcessor',
-      'resellerSub',
-      'resolutionCenter',
-      'risk',
-      'role',
-      'roleMerchant',
-      'roleReseller',
-      'transaction',
-      'user',
-      'userMerchant',
-      'userReseller'
-    ]
-    // methods.forEach((cat) => {
-    //   this[cat] = this[cat].bind(this)
-    //   // Object.keys(this[cat]).forEach((key) => {
-    //   //   this[cat][key] = this[cat][key].bind(this)
-    //   // })
-    // })
+    // const methods = [
+    //   'billing',
+    //   'country',
+    //   'customer',
+    //   'customerAccount',
+    //   'fee',
+    //   'fraud',
+    //   'invoice',
+    //   'merchant',
+    //   'merchantProcessor',
+    //   'notification',
+    //   'notificationMerchant',
+    //   'notificationReseller',
+    //   'paymentForm',
+    //   'ratePlan',
+    //   'recurringPayment',
+    //   'report',
+    //   'reportMerchant',
+    //   'reseller',
+    //   'resellerMerchant',
+    //   'resellerMerchantProcessor',
+    //   'resellerSub',
+    //   'resolutionCenter',
+    //   'risk',
+    //   'role',
+    //   'roleMerchant',
+    //   'roleReseller',
+    //   'transaction',
+    //   'user',
+    //   'userMerchant',
+    //   'userReseller'
+    // ]
+    // // methods.forEach((cat) => {
+    // //   this[cat] = this[cat].bind(this)
+    // //   // Object.keys(this[cat]).forEach((key) => {
+    // //   //   this[cat][key] = this[cat][key].bind(this)
+    // //   // })
+    // // })
     return this
   }
 
+  /**
+   * Getter - config RPG client
+   */
   get config () {
     return this._config
   }
 
   /**
-   * Configure RPG client
+   * Setter - Configure RPG client
    * @name configure
    * @param {Object} options
    * @param {string} options.apiKey       api key
@@ -177,7 +189,7 @@ export class RPG {
    * @param {bool}   options.debug        output verbose debug information
    * @param {bool}   options.sandbox      sandbox
    */
-  set config(options: { apiKey?: string, username?: string, password?: string, transform?: boolean, debug?: boolean, sandbox?: boolean }) {
+  set config(options: { apiKey?: string, username?: string, password?: string, transform?: boolean, debug?: boolean, sandbox?: boolean, validateWebhooks?: boolean }) {
     // Validate that the config
     validateConfig.rpg(options)
 
@@ -187,10 +199,47 @@ export class RPG {
     this._config.transform = options.transform !== false
     this._config.debug = options.debug || false
     this._config.sandbox = options.sandbox || false
+    this._config.validateWebhooks = options.validateWebhooks || false
 
     return
   }
 
+  /**
+   * Setter - Http Agent Proxy
+   * @param pxy
+   */
+  set httpAgent(pxy) {
+    this._proxy = pxy
+    return
+  }
+
+  /**
+   * Getter - Http Agent Proxy
+   */
+  get httpAgent() {
+    return this._proxy
+  }
+
+  /**
+   * Setter - Max Network Retries
+   * @param rty
+   */
+  set maxNetworkRetries(rty) {
+    this._retries = rty
+    return
+  }
+
+  /**
+   * Getter - Max Network Retries
+   */
+  get maxNetworkRetries() {
+    return this._retries
+  }
+
+  /**
+   * URL to RiSE Gateway
+   * Sandbox or live
+   */
   get requestUrl() {
     return this.config.sandbox ? 'https://api.uat.hellopayments.net' : 'https://api.uat.hellopayments.net'
   }
@@ -239,7 +288,7 @@ export class RPG {
       body: body,
     }
 
-    // request
+    // make request promise
     return request(req)
       .then((res) => {
         // if(res.response.result && res.response.result !== 1) {

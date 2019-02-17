@@ -1,10 +1,11 @@
 import * as joi from 'joi'
 
-export const customer = joi.object().keys({
+export const customer = {
   merchantId: joi.alternatives().try(joi.number(), joi.string()).required(),
   referenceNumber: joi.string().allow(null),
   userName: joi.string(),
   password: joi.string(),
+  email: joi.string().allow(null),
   billingContact: joi.object().keys({
     name: joi.object().keys({
       title: joi.string().allow(null),
@@ -56,6 +57,15 @@ export const customer = joi.object().keys({
     }).optional()
   }),
   isEnabled: joi.boolean().optional()
+}
+
+export const customerAdd = joi.object().keys({
+  ...customer
+})
+
+export const customerUpdate = joi.object().keys({
+  customerId: joi.alternatives().try(joi.number(), joi.string()).required(),
+  ...customer
 })
 
 export const customersQuery = joi.object().keys({

@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Risk', () => {
+describe('#Unit Risk', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,5 +16,6 @@ describe('#Risk', () => {
 
   it('should exist', () => {
     assert.ok(rpg.risk)
+    assert.equal(rpg.risk.rpg, rpg)
   })
 })

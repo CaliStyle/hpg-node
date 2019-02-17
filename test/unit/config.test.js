@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#RPG Config', () => {
+describe('#Unit RPG Config', () => {
   it('should not configure', (done) => {
     try {
       const rpg = new RPG({

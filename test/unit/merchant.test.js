@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Merchant', () => {
+describe('#Unit Merchant', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('#Merchant', () => {
 
   it('should exist', () => {
     assert.ok(rpg.merchant)
+    assert.equal(rpg.merchant.rpg, rpg)
     assert.equal(typeof rpg.merchant.addMerchant, 'function')
     assert.equal(typeof rpg.merchant.editMerchant, 'function')
     assert.equal(typeof rpg.merchant.allMerchants, 'function')

@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Role', () => {
+describe('#Unit Role', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('#Role', () => {
 
   it('should exist', () => {
     assert.ok(rpg.role)
+    assert.equal(rpg.role.rpg, rpg)
     assert.equal(typeof rpg.role.addRole, 'function')
     assert.equal(typeof rpg.role.editRole, 'function')
     assert.equal(typeof rpg.role.allRoles, 'function')

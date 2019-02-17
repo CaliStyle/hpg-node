@@ -1,5 +1,5 @@
 import * as joi from 'joi'
-import {user} from "../schemas";
+import {user} from '../schemas'
 
 export const validateUser = {
   // Validate Creating a user

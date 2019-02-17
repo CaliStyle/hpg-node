@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#CustomerAccount', () => {
+describe('#Unit CustomerAccount', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('#CustomerAccount', () => {
 
   it('should exist', () => {
     assert.ok(rpg.customerAccount)
+    assert.equal(rpg.customerAccount.rpg, rpg)
     assert.equal(typeof rpg.customerAccount.addCustomerAccount, 'function')
     assert.equal(typeof rpg.customerAccount.editCustomerAccount, 'function')
     assert.equal(typeof rpg.customerAccount.allCustomerAccounts, 'function')

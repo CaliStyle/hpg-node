@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#RecurringPayment', () => {
+describe('#Unit RecurringPayment', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,5 +16,6 @@ describe('#RecurringPayment', () => {
 
   it('should exist', () => {
     assert.ok(rpg.recurringPayment)
+    assert.equal(rpg.recurringPayment.rpg, rpg)
   })
 })

@@ -1,12 +1,12 @@
 import * as joi from 'joi'
 
-import {customer, customerIdQuery, customersQuery} from '../schemas'
+import {customerAdd, customerIdQuery, customersQuery, customerUpdate} from '../schemas'
 
 export const validateCustomer = {
   // Validate Creating a customer
   addCustomer(data) {
     return new Promise((resolve, reject) => {
-      joi.validate(data, customer, (err, value) => {
+      joi.validate(data, customerAdd, (err, value) => {
         if (err) {
           return reject(new TypeError(err))
         }
@@ -17,7 +17,7 @@ export const validateCustomer = {
   // Validate editing a customer
   editCustomer(data) {
     return new Promise((resolve, reject) => {
-      joi.validate(data, customer, (err, value) => {
+      joi.validate(data, customerUpdate, (err, value) => {
         if (err) {
           return reject(new TypeError(err))
         }

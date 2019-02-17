@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#ResellerMerchantProcessor', () => {
+describe('#Unit ResellerMerchantProcessor', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('#ResellerMerchantProcessor', () => {
 
   it('should exist', () => {
     assert.ok(rpg.resellerMerchantProcessor)
+    assert.equal(rpg.resellerMerchantProcessor.rpg, rpg)
     assert.equal(typeof rpg.resellerMerchantProcessor.getProcessor, 'function')
     assert.equal(typeof rpg.resellerMerchantProcessor.setProcessor, 'function')
   })

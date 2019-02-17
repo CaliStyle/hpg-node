@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Transaction', () => {
+describe('#Unit Transaction', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('#Transaction', () => {
 
   it('should exist', () => {
     assert.ok(rpg.transaction)
+    assert.equal(rpg.transaction.rpg, rpg)
     assert.equal(typeof rpg.transaction.addTransactionCC, 'function')
     assert.equal(typeof rpg.transaction.addTransactionACH, 'function')
     assert.equal(typeof rpg.transaction.addTransactionDC, 'function')

@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Unit Notification', () => {
+describe('#Intergration Webhook', () => {
   let rpg
 
   beforeEach(() => {
@@ -12,10 +12,5 @@ describe('#Unit Notification', () => {
       transform: false,
       debug: true
     })
-  })
-
-  it('should exist', () => {
-    assert.equal(rpg.notification.rpg, rpg)
-    assert.ok(rpg.notification)
   })
 })

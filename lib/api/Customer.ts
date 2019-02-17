@@ -3,6 +3,10 @@ import { Base } from './Base'
 
 export class Customer extends Base {
 
+  /**
+   * Add Customer
+   * @param data
+   */
   addCustomer (data) {
     const { merchantId, ...req } = data
 
@@ -15,7 +19,11 @@ export class Customer extends Base {
         return this.rpg.request(url, req, validation)
       })
   }
-  
+
+  /**
+   * Edit Customer
+   * @param data
+   */
   editCustomer (data) {
     const { merchantId, customerId, ...req } = data
     const url = {
@@ -27,20 +35,24 @@ export class Customer extends Base {
         return this.rpg.request(url, req, validation)
       })
   }
-  
+
+  /**
+   * List All Customers
+   * @param data
+   */
   allCustomers (data) {
     const { merchantId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
       'GET': `/merchants/${merchantId}/customers`
     }
     const query = []
-    if (pageSize) {
+    if (typeof pageSize !== 'undefined') {
       query.push(`PageSize=${pageSize}`)
     }
-    if (startRow) {
+    if (typeof startRow !== 'undefined') {
       query.push(`StartRow=${startRow}`)
     }
-    if (sortField) {
+    if (typeof sortField !== 'undefined') {
       query.push(`SortField=${sortField}`)
     }
     if (typeof asc !== 'undefined') {
@@ -55,7 +67,11 @@ export class Customer extends Base {
         return this.rpg.request(url, req, validation)
       })
   }
-  
+
+  /**
+   * Get Customer by ID
+   * @param data
+   */
   customerById(data) {
     const { merchantId, customerId, ...req } = data
     const url = {'GET': `/merchants/${merchantId}/customers/${customerId}`}

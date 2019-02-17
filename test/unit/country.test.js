@@ -1,7 +1,7 @@
 const assert = require('assert')
 const RPG = require('../../dist').RPG
 
-describe('#Country', () => {
+describe('#Unit Country', () => {
   let rpg
 
   beforeEach(() => {
@@ -16,6 +16,7 @@ describe('#Country', () => {
 
   it('should exist', () => {
     assert.ok(rpg.country)
+    assert.equal(rpg.country.rpg, rpg)
     // assert.equal(typeof rpg.country.addCountry, 'function')
     // assert.equal(typeof rpg.country.editCountry, 'function')
     // assert.equal(typeof rpg.country.allCountrys, 'function')
