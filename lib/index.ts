@@ -288,7 +288,6 @@ export class RPG {
   getApiToken() {
     return this.login()
       .then(body => {
-        console.log('GET API TOKEN BODY', body)
         this.config.apiKey = body.token
         this.config.parentId = body.parentId
         this.config.resellerId = body.resellerId

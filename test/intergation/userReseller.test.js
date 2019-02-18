@@ -7,8 +7,8 @@ describe('#Intergration UserReseller', () => {
   before((done) => {
     rpg = new RPG({
       apiKey: process.env.API_KEY,
-      username: process.env.USERNAME || 'mylesg1',
-      password: process.env.PASSWORD || 'Scarface1!',
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
       transform: false,
       debug: true,
       sandbox: true
