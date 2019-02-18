@@ -77,7 +77,12 @@ export class RPG {
     transform?: boolean,
     debug?: boolean,
     sandbox?: boolean,
-    validateWebhooks?: boolean
+    validateWebhooks?: boolean,
+    changePassword?: boolean,
+    userType?: number,
+    role?: any,
+    parentId?: any,
+    resellerId?: any
   } = {}
 
   private _proxy: {}
@@ -91,7 +96,12 @@ export class RPG {
     transform?: boolean,
     debug?: boolean,
     sandbox?: boolean,
-    validateWebhooks?: boolean} = {}
+    validateWebhooks?: boolean,
+    changePassword?: boolean,
+    userType?: number,
+    role?: any,
+    parentId?: any,
+    resellerId?: any} = {}
   ) {
 
     // Set config
@@ -189,17 +199,35 @@ export class RPG {
    * @param {bool}   options.debug        output verbose debug information
    * @param {bool}   options.sandbox      sandbox
    */
-  set config(options: { apiKey?: string, username?: string, password?: string, transform?: boolean, debug?: boolean, sandbox?: boolean, validateWebhooks?: boolean }) {
+  set config(options: {
+    apiKey?: string,
+    username?: string,
+    password?: string,
+    transform?: boolean,
+    debug?: boolean,
+    sandbox?: boolean,
+    validateWebhooks?: boolean,
+    changePassword?: boolean,
+    userType?: number,
+    role?: any,
+    parentId?: any,
+    resellerId?: any
+  }) {
     // Validate that the config
     validateConfig.rpg(options)
 
     this._config.apiKey = options.apiKey || this.config.apiKey || null
     this._config.username = options.username || this.config.username || null
     this._config.password = options.password || this.config.password || null
-    this._config.transform = options.transform !== false
-    this._config.debug = options.debug || false
-    this._config.sandbox = options.sandbox || false
-    this._config.validateWebhooks = options.validateWebhooks || false
+    this._config.transform = options.transform !== false ? options.transform || false : this.config.transform || false
+    this._config.debug = options.debug !== false ? options.debug || false : this.config.debug || false
+    this._config.sandbox = options.sandbox !== false ? options.sandbox || false : this.config.sandbox || false
+    this._config.validateWebhooks = options.validateWebhooks !== false ? options.validateWebhooks || false : this.config.validateWebhooks || false
+    this._config.changePassword = options.changePassword !== false ? options.changePassword || false : this.config.changePassword || false
+    this._config.userType = options.userType || this.config.userType || null
+    this._config.role = options.role || this.config.role || null
+    this._config.parentId = options.parentId || this.config.parentId || null
+    this._config.resellerId = options.resellerId || this.config.resellerId || null
 
     return
   }
@@ -241,7 +269,33 @@ export class RPG {
    * Sandbox or live
    */
   get requestUrl() {
-    return this.config.sandbox ? 'https://api.uat.hellopayments.net' : 'https://api.uat.hellopayments.net'
+    return this.config.sandbox ? 'https://api.uat.hellopayments.net' : 'https://api.hellopayments.net'
+  }
+
+  /**
+   *
+   */
+  login() {
+    return this.user.login({
+      userName: this.config.username,
+      password: this.config.password
+    })
+  }
+
+  /**
+   * get API token
+   */
+  getApiToken() {
+    return this.login()
+      .then(body => {
+        console.log('GET API TOKEN BODY', body)
+        this.config.apiKey = body.token
+        this.config.parentId = body.parentId
+        this.config.resellerId = body.resellerId
+        this.config.userType = body.userType
+        this.config.role = body.role
+        this.config.changePassword = body.changePassword
+      })
   }
 
   /**
@@ -279,13 +333,17 @@ export class RPG {
 
     const req: {headers?: any, method: string, url: string, strictSSL: boolean, json?: boolean, body?: any} = {
       headers: {
-        Authorization: this.config.apiKey
+        // Authorization: this.config.apiKey
       },
       method: method,
       url: url,
       strictSSL: true,
       json: true,
       body: body,
+    }
+
+    if (this.config.apiKey) {
+      req.headers['Authorization'] = this.config.apiKey
     }
 
     // make request promise

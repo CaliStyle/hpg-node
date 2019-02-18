@@ -31,7 +31,12 @@ describe('#Unit RPG', () => {
       transform: false,
       debug: true,
       sandbox: true,
-      validateWebhooks: false
+      validateWebhooks: false,
+      parentId: null,
+      resellerId: null,
+      role: null,
+      userType: null,
+      changePassword: false
     })
   })
   it('should set max network retires', () => {

@@ -1,4 +1,5 @@
 import { Base } from './Base'
+import {validateUserMerchant, validateUserReseller} from "../validators";
 
 export class UserReseller extends Base {
   addUser(data) {
@@ -23,10 +24,30 @@ export class UserReseller extends Base {
   allUsers(data) {
     const { resellerId, pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/resellers/${resellerId}/users?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
+      'GET': `/resellers/${resellerId}/users`
     }
 
-    return this.rpg.request(url, req)
+    const query = []
+    if (typeof pageSize !== 'undefined') {
+      query.push(`PageSize=${pageSize}`)
+    }
+    if (typeof startRow !== 'undefined') {
+      query.push(`StartRow=${startRow}`)
+    }
+    if (typeof sortField !== 'undefined') {
+      query.push(`SortField=${sortField}`)
+    }
+    if (typeof asc !== 'undefined') {
+      query.push(`Asc=${asc}`)
+    }
+    if (query.length > 0) {
+      url.GET = url.GET + `?${ query.join('&') }`
+    }
+
+    return validateUserReseller.allUserResellers(data)
+      .then(validation => {
+        return this.rpg.request(url, req, validation)
+      })
   }
 
   userById(data) {

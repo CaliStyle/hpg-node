@@ -1,4 +1,5 @@
 import { Base } from './Base'
+import {validateCustomer, validateUser} from "../validators";
 
 export class User extends Base {
   addUser(data) {
@@ -23,10 +24,31 @@ export class User extends Base {
   allUsers(data) {
     const { pageSize, startRow, sortField, asc, ...req } = data
     const url = {
-      'GET': `/users?PageSize=${pageSize}&StartRow=${startRow}&SortField=${sortField}&Asc=${asc}`
+      'GET': `/users`
     }
 
-    return this.rpg.request(url, req)
+    const query = []
+    if (typeof pageSize !== 'undefined') {
+      query.push(`PageSize=${pageSize}`)
+    }
+    if (typeof startRow !== 'undefined') {
+      query.push(`StartRow=${startRow}`)
+    }
+    if (typeof sortField !== 'undefined') {
+      query.push(`SortField=${sortField}`)
+    }
+    if (typeof asc !== 'undefined') {
+      query.push(`Asc=${asc}`)
+    }
+    if (query.length > 0) {
+      url.GET = url.GET + `?${ query.join('&') }`
+    }
+
+    return validateUser.allUsers(data)
+      .then(validation => {
+        return this.rpg.request(url, req, validation)
+      })
+    // return this.rpg.request(url, req)
   }
 
   userById(data) {
@@ -103,6 +125,15 @@ export class User extends Base {
     const {loginname, ...req } = data
     const url = {
       'POST': `/users/${loginname}/forgotpasswords`
+    }
+
+    return this.rpg.request(url, req)
+  }
+
+  login(data) {
+    const { ...req } = data
+    const url = {
+      'POST': `/users/sessions`
     }
 
     return this.rpg.request(url, req)

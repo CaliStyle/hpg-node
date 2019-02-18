@@ -10,7 +10,7 @@ describe('#Unit Risk', () => {
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
       transform: false,
-      debug: true
+      debug: true, sandbox:true
     })
   })
 
